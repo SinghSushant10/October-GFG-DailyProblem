@@ -1,0 +1,21 @@
+#Multiply two linked lists
+
+class Solution {
+    //Method to convert list to number
+    public static long linkedListToNumber(Node node){
+        long num = 0 , m = 1000000007;
+         while (node!=null){
+             num = (num*10+node.data)%m;
+             node = node.next;
+         }
+         return num;
+    }
+    
+    public long multiplyTwoLists(Node first, Node second) {
+        // Code here
+        long l1 = linkedListToNumber(first);
+        long l2 = linkedListToNumber(second);
+        return (l1*l2) % 1000000007;
+        
+    }
+}
