@@ -1,0 +1,37 @@
+#Find the number of islands
+class Solution {
+    int n, m;
+    int[][] dir = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};
+
+    // Helper function to explore the island and mark connected lands as visited
+    private void solve(char[][] grid, int i, int j) {
+        // Base case
+        if (i < 0 || j < 0 || i >= n || j >= m || grid[i][j] == '0') {
+            return;
+        }
+        
+        grid[i][j] = '0'; // Mark current cell as visited
+        for (int[] d : dir) {
+            int newi = i + d[0];
+            int newj = j + d[1];
+            solve(grid, newi, newj); // Explore in all 8 possible directions
+        }
+    }
+
+    public int numIslands(char[][] grid) {
+        n = grid.length;
+        m = grid[0].length;
+        int count = 0;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (grid[i][j] == '1') {
+                    solve(grid, i, j); // Start a DFS for every '1' found
+                    count++; // Increment count for each island found
+                }
+            }
+        }
+
+        return count;
+    }
+}
