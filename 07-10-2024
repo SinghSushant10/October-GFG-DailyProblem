@@ -1,0 +1,33 @@
+#XOR Linked List
+class Solution {
+ public Node insert(Node head, int data) {
+        Node newNode = new Node(data);
+        // Case 1: Empty linked list
+        newNode.npx = head;
+        // Case 2: Non-empty linked list
+        if (head != null) {
+            // Update the npx of the current head
+            head.npx = XOR(newNode, head.npx);
+        }
+        // Return the new node as the new head
+        return newNode;
+    }
+
+    // Get the list elements by traversing the XOR linked list
+    public ArrayList<Integer> getList(Node head) {
+        ArrayList<Integer> result = new ArrayList<>();
+        Node curr = head;
+        Node prev = null, next;
+
+        // Traverse the XOR linked list
+        while (curr != null) {
+            result.add(curr.data);  // Collect data
+            // Get the next node by XORing the previous node and npx of current node
+            next = XOR(prev, curr.npx);
+            prev = curr;
+            curr = next;
+        }
+
+        return result;
+    }
+}
