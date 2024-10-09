@@ -1,0 +1,33 @@
+#Linked List Matrix
+/*Function should return the head of the 2D LL.*/
+class Solution {
+    static Node construct(int arr[][]) {
+        // Add your code here.
+        int n = arr.length; // size of matrix
+        if(n==0) return null; //if matrix is empty
+        Node[][] nodeMat = new Node[n][n]; //create 2D array to hold node referance
+        //Create a Node for each element in the matrix
+        for(int i=0;i<n;i++){
+            for(int j = 0 ; j<n ; j++){
+                nodeMat[i][j] =  new Node(arr[i][j]); //Initilize each node with matrix value 
+            }
+        }
+        
+        //link each node to its right and down neighbours 
+        for(int i = 0; i<n ; i++){
+            for(int j = 0 ; j<n ; j++){
+                //link to the right neighbours if not the last coloumn
+                if(j<n-1){
+                    nodeMat[i][j].right=nodeMat[i][j+1];
+                }
+                //link to the down neighbours if not the last row 
+                if(i<n-1){
+                    nodeMat[i][j].down=nodeMat[i+1][j];
+                }
+            }
+        }
+        
+        // Return the top-left node (head of the linked matrix)
+        return nodeMat[0][0];
+    }
+}
