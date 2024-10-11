@@ -1,0 +1,46 @@
+Given an array of elements arr[] with indices ranging from 0 to arr.size() - 1, your
+task is to write a program that rearranges the elements of the array such that arr[i] = i. 
+If an element i is not present in the array, -1 should be placed at the corresponding index.
+
+
+class Solution {
+    public List<Integer> rearrange(List<Integer> arr) {
+        // Code here
+     // Rearrange elements in place
+     for(int i =0 ; i<arr.size();i++){
+         while(arr.get(i)!=-1 && arr.get(i)!=i){
+             //swap
+             int correctIndex= arr.get(i);
+             int temp =arr.get(correctIndex);
+             arr.set(correctIndex,arr.get(i));
+             arr.set(i,temp);
+         }
+     }
+      return arr;
+    }
+}
+
+
+
+
+
+
+#################### Brute Force  ########################
+class Solution {
+    public List<Integer> rearrange(List<Integer> arr) {
+        // Code here
+    List<Integer> ans = new ArrayList<>();
+    int n = arr.size();
+    for(int i = 0 ; i<n ; i++){
+        ans.add(-1);
+        
+    }
+    for(int i =0; i<n; i++){
+        if(arr.get(i)!=-1){
+            ans.set(arr.get(i),arr.get(i));
+        }
+    }
+    return ans;
+        
+    }
+}
