@@ -1,0 +1,12 @@
+# Two Smallests in Every Subarray
+
+class Solution {
+    public int pairWithMaxSum(int[] arr) {
+        // code here
+        int maxSum = -1; 
+        for(int i = 0 ; i<arr.length-1;i++){
+            maxSum= Math.max(maxSum,arr[i]+arr[i+1]);
+        }
+        return maxSum;
+    }
+}
