@@ -1,0 +1,16 @@
+#Delete Alternate Nodes
+
+class Solution {
+    public void deleteAlt(Node head) {
+        // Code Here
+        if(head==null) return ;
+        Node currentNode=head;
+        while(currentNode!=null && currentNode.next!=null){
+            Node nodetoDelete = currentNode.next;  //get the next node 
+            currentNode.next=currentNode.next.next;     //skip the next node 
+            nodetoDelete=null;   //marked the skipped node for the garbagae collection
+            currentNode=currentNode.next;
+        }
+      
+    }
+}
