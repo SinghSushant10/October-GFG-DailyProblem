@@ -1,0 +1,44 @@
+#Given an array arr[] of positive integers where every element appears even times except for one. Find that number occurring an odd number of times.
+Examples:
+Input: arr[] = [1, 1, 2, 2, 2]
+Output: 2
+Explanation: In the given array all element appear two times except 2 which appears thrice.
+//using XOR 
+TC:O(n) SC:O(1)
+class Solution {
+    int getSingle(int arr[]) {
+    //code here
+    // as we know if we do XOR of two same no then result is 0, and do the XOR 
+    //of  number with 0 then the result is that number only 
+    //if that number is not equal to 0 then  that number is occuring odd times
+    
+    int number =0;
+    for(int i =0; i<arr.length;i++){
+        number = arr[i]^ number;   
+    }
+    if(number!=0){
+        return number;
+    }
+     return -1;
+    }
+}
+
+
+//Using Map 
+//TC: O(n) SC: O(n)
+class Solution {
+    int getSingle(int arr[]) {
+        // code here
+        Map<Integer,Integer> freqMap=new HashMap<>();
+        for(int num:arr){
+            freqMap.put(num,freqMap.getOrDefault(num,0)+1);
+        }
+        for(int key : freqMap.keySet()){
+            if(freqMap.get(key)%2!=0){
+                return key;
+            }
+        }
+        return -1;
+        
+    }
+}
