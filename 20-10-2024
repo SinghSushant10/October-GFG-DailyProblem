@@ -1,0 +1,27 @@
+#Sort a k sorted doubly linked list
+
+class Solution {
+    public DLLNode sortAKSortedDLL(DLLNode head, int k) {
+        // Code here
+        PriorityQueue<Integer> minHeap=new PriorityQueue<>();
+        DLLNode temp1= head;
+        DLLNode temp2=head;
+         
+        while(temp1!=null){
+     // Add the data of current node to minHeap
+            minHeap.add(temp1.data);
+     // If heap size exceeds k, extract minimum and move to next node
+            if(minHeap.size()==k+1){
+                temp2.data=minHeap.poll();
+                temp2=temp2.next;
+            }
+            temp1=temp1.next;
+        }
+      // Extract the remaining elements from the heap
+        while(!minHeap.isEmpty()){
+            temp2.data=minHeap.poll();
+            temp2=temp2.next;
+        }
+        return head;
+    }
+}
