@@ -1,0 +1,29 @@
+#Find the Sum of Last N nodes of the Linked List
+TC:O(n) SC: O(1)
+class Solution {
+
+    // Return the sum of last k nodes
+    public int sumOfLastN_Nodes(Node head, int n) {
+        // write code here
+        if(head==null || n<=0) return 0;
+        Node fast = head;
+        Node slow = head;
+        int sum=0;
+        //Move fast pointer to 'n' node ahead
+        for(int i=0;i<n;i++){
+            if(fast==null)return 0; //if n is greater than no. of nodes 
+            fast=fast.next;
+        }
+        //move the fast and slow pointer until the fast reach the end 
+        while(fast!=null){
+            fast=fast.next;
+            slow=slow.next;
+        }
+        //sum of the last 'n' node starting from the slow 
+        while(slow!=null){
+            sum+=slow.data;
+            slow=slow.next;
+        }
+        return sum;
+    }
+}
