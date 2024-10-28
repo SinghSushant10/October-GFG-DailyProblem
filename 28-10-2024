@@ -1,0 +1,15 @@
+#Remove duplicates in array
+class Solution {
+    ArrayList<Integer> removeDuplicate(int arr[]) {
+        // code here
+        HashMap<Integer,Integer> map =new  HashMap<>();
+        ArrayList<Integer> res = new  ArrayList<>();
+        for(int num :arr){
+            if(!map.containsKey(num)){
+                map.put(num,1);
+                res.add(num);
+            }
+        }
+     return res;
+    }
+}
