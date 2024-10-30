@@ -1,0 +1,18 @@
+#Pairs with difference k
+Given an array arr[] of positive integers. Find the number of pairs of integers whose difference equals a given number k.
+Note: (a, b) and (b, a) are considered the same. Also, the same numbers at different indices are considered different.
+
+class Solution {
+    int countPairsWithDiffK(int[] arr, int k) {
+        // code here
+       int count =0;
+       HashMap<Integer,Integer> map = new HashMap<>();
+       for(int x : arr){
+           map.put(x,map.getOrDefault(x,0)+1);
+       }
+       for(int x : arr){
+           count+=map.getOrDefault(x+k,0);
+       }
+       return count;
+    }
+}
