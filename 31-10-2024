@@ -1,0 +1,30 @@
+#Insert in Sorted way in a Sorted DLL
+class Solution {
+    public Node sortedInsert(Node head, int x) {
+        // add your code here
+     Node NodeInsert = new Node(x);
+     if(head==null){
+         return NodeInsert;
+     }
+      // If the new node needs to be the new head
+      if(x<=head.data){
+          NodeInsert.next=head;
+          head.prev=NodeInsert;
+          return NodeInsert;
+      }
+        //Traverse to find the correct insertion position
+      Node current=head;
+      while(current.next!=null && current.next.data<x){
+          current = current.next;
+      }
+      // Insert newNode after 'current'
+      NodeInsert.next=current.next;
+      if(current.next!=null){
+          current.next.prev = NodeInsert;
+      }
+      current.next=NodeInsert;
+      NodeInsert.prev=current;
+      return head;
+      
+    }
+}
